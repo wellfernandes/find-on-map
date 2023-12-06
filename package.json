@@ -7,9 +7,16 @@
     "serve": "vite preview"
   },
   "devDependencies": {
+    "@types/ol": "^7.0.0",
+    "typescript": "^5.3.2",
     "vite": "^4.0.4"
   },
   "dependencies": {
     "ol": "latest"
-  }
+  },
+  "description": "This example demonstrates how the `ol` package can be used with [Vite](https://vitejs.dev/).",
+  "main": "vite.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
