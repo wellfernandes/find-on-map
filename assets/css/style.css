@@ -45,3 +45,24 @@ html, body {
   margin-top: 100px;
   position: relative;
 }
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input {
+  padding: 6px 10px;
+  margin-right: 10px;
+  border-radius: 30px;
+}
+
+.search-container button {
+  padding: 8px 16px;
+  margin-right: 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
