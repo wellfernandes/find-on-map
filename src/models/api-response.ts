@@ -1,7 +1,7 @@
 interface ApiResponse {
     by: string;
     valid_key: boolean;
-    results: Results;
+    results: Result;
     execution_time: number;
     from_cache: boolean;
 }
