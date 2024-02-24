@@ -1,17 +1,17 @@
 const apiConfigConstants = {
     // api hgbrasil
-    API_HGBR_KEY: 'key=',
-    API_HGBR_URL: 'https://api.hgbrasil.com/',
+    API_HGBR_KEY: process.env.VITE_API_HGBR_KEY as string,
+    API_HGBR_URL: process.env.VITE_API_HGBR_URL as string,
 
     // api openweather
-    API_OPENWEATHER_KEY: '',
-    API_OPENWEATHER_URL: 'http://api.openweathermap.org/',
+    API_OPENWEATHER_KEY: process.env.VITE_API_OPENWEATHER_KEY as string,
+    API_OPENWEATHER_URL: process.env.VITE_API_OPENWEATHER_URL as string,
 
     // server express
-    PORT: 3000,
+    PORT: process.env.VITE_PORT,
 
     // map
-    ZOOM_MAP_DEFAULT: 14,
+    ZOOM_MAP_DEFAULT: process.env.VITE_ZOOM_MAP_DEFAULT,
 };
 
 export { apiConfigConstants };
