@@ -2,10 +2,19 @@ import { apiConfigConstants } from "../constants/api-config-constants";
 import { errorConstants } from "../constants/error-constants";
 import { ApiHgbrResponse } from "../models/api-hgbr-response";
 import { ApiOpenWeatherResponse } from "../models/api-open-weather-response";
+import { addToLocalHistory, getFromLocalHistory } from "./local-utils";
 
 export default class ApiUtils {
     async getCityByName(cityName: string) {
         try {
+
+            const localCityData = getFromLocalHistory(cityName);
+
+            if (localCityData) {
+                console.log("Dados recuperados do histórico local:", localCityData);
+                return localCityData;
+            }
+
             const response = await fetch(
                 apiConfigConstants.API_HGBR_URL
                 +`weather?`
@@ -45,6 +54,8 @@ export default class ApiUtils {
                 from_cache: data.from_cache,
             };
 
+            addToLocalHistory(cityName, apiResponse);
+
             return apiResponse;
 
         } catch (error) {
@@ -78,6 +89,8 @@ export default class ApiUtils {
                         state: cityData.state,
                     },
                 };
+
+                addToLocalHistory(cityName, apiResponse);
 
                 return apiResponse;
             }
