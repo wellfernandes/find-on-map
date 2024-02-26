@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/assets/img/find-on-map-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Find On Map</title>
+    <title>Início</title>
   </head>
   <body>
 
@@ -23,14 +23,33 @@
     <div id="map" class="map"></div>
   </main>
 
+  <div id="weatherInfoScreen" class="weather-info-screen">
+    <div class="weather-info">
+      <h2>Informações do Clima</h2>
+      <div class="weather-info-content">
+        <div class="weather-info-left">
+          <p><strong>Cidade:</strong> <span id="cityNameScreen"></span></p><p><strong>Estado:</strong> <span id="stateCityScreen"></span></p>
+          <p><strong>Temperatura:</strong> <span id="temperatureScreen"></span></p>
+          <p><strong>Umidade:</strong> <span id="humidityScreen"></span></p>
+          <p><strong>Velocidade do Vento:</strong> <span id="windSpeedScreen"></span></p>
+          <p><strong>Descrição:</strong> <span id="descriptionScreen"></span></p>
+        </div>
+        <div class="weather-info-right">
+          <img src="" alt="Ícone do Clima" id="weatherIconScreen">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
-    <p>© All rights reserved | Developed by
+    <p>© Todos os direitos reservados | Desenvolvido por
       <a href="https://github.com/wellfernandes" target="_blank">Welliton Fernandes Leal
       </a>
     </p>
   </footer>
 
-  <script type="module" src="/src/models/map.js"></script>
+  <script type="module" src="/src/domain/map.js"></script>
+  <script type="module" src="/src/domain/weather-information.ts"></script>
   <link rel="stylesheet" href="/assets/css/style.css" />
 
   </body>

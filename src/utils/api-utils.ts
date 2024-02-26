@@ -1,20 +1,11 @@
 import { apiConfigConstants } from "../constants/api-config-constants";
 import { errorConstants } from "../constants/error-constants";
-import { ApiHgbrResponse } from "../models/api-hgbr-response";
-import { ApiOpenWeatherResponse } from "../models/api-open-weather-response";
-import { addToLocalHistory, getFromLocalHistory } from "./local-utils";
+import { ApiHgbrModel } from "../models/api-hgbr-model";
+import { ApiOpenWeatherModel } from "../models/api-open-weather-model";
 
 export default class ApiUtils {
     async getCityByName(cityName: string) {
         try {
-
-            const localCityData = getFromLocalHistory(cityName);
-
-            if (localCityData) {
-                console.log("Dados recuperados do histórico local:", localCityData);
-                return localCityData;
-            }
-
             const response = await fetch(
                 apiConfigConstants.API_HGBR_URL
                 +`weather?`
@@ -23,7 +14,7 @@ export default class ApiUtils {
 
             const data = await response.json();
 
-            const apiResponse: ApiHgbrResponse = {
+            const apiResponse: ApiHgbrModel = {
                 by: data.by,
                 valid_key: data.valid_key,
                 results: {
@@ -54,8 +45,6 @@ export default class ApiUtils {
                 from_cache: data.from_cache,
             };
 
-            addToLocalHistory(cityName, apiResponse);
-
             return apiResponse;
 
         } catch (error) {
@@ -79,7 +68,7 @@ export default class ApiUtils {
             if (data && data.length > 0) {
 
                 const cityData = data[0];
-                const apiResponse: ApiOpenWeatherResponse = {
+                const apiResponse: ApiOpenWeatherModel = {
                     cityData: {
                         name: cityData.name,
                         local_names: cityData.local_names,
@@ -89,8 +78,6 @@ export default class ApiUtils {
                         state: cityData.state,
                     },
                 };
-
-                addToLocalHistory(cityName, apiResponse);
 
                 return apiResponse;
             }

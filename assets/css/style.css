@@ -40,11 +40,13 @@ html, body {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  z-index: 100;
 }
 
 .map{
   margin-top: 100px;
   position: relative;
+  z-index: 0;
 }
 
 .search-container {
@@ -69,7 +71,6 @@ html, body {
 }
 
 .btn{
-    /*alinhar botões a direita*/
     float: right;
     padding: 30px 10px;
     font-family: Arial, sans-serif;
@@ -136,4 +137,16 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.weather-info-screen{
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 2;
+  position: relative;
+  top: 100px;
+  left: 11px;
+  width: 15%;
+  height: 45%;
 }

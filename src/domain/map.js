@@ -5,8 +5,10 @@ import TileLayer from 'ol/layer/Tile.js';
 import View from 'ol/View.js';
 import ApiUtils from "../utils/api-utils";
 import { useGeographic } from 'ol/proj';
-import {errorConstants} from "../constants/error-constants";
-import {apiConfigConstants} from "../constants/api-config-constants";
+import { errorConstants } from "../constants/error-constants";
+import { apiConfigConstants } from "../constants/api-config-constants";
+import { updateHTMLWithWeatherInfo } from "./weather-information";
+import { addToLocalHistory, getFromLocalHistory } from "../utils/local-utils";
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
@@ -20,17 +22,44 @@ document.addEventListener('DOMContentLoaded', () => {
         const cityNameInput = document.getElementById('cityName');
         const cityName = cityNameInput.value;
 
-        apiUtils.getCityByName(cityName).then(async (result) => {
-            try {
-                const response = await apiUtils.getCoordsByCityName(cityName);
+        const localCityData = getFromLocalHistory(cityName);
 
-                if (response) {
-                    const centerCoordinates = [response.cityData.lon, response.cityData.lat];
+        if (localCityData) {
+            console.log("Dados recuperados do histórico local");
+
+            const centerCoordinates = [
+                localCityData.apiOpenWeatherResponse.cityData.lon,
+                localCityData.apiOpenWeatherResponse.cityData.lat
+            ];
+
+            useGeographic(centerCoordinates);
+
+            map.getView().setCenter(centerCoordinates);
+            map.getView().setZoom(apiConfigConstants.ZOOM_MAP_DEFAULT);
+
+            updateHTMLWithWeatherInfo(localCityData.apiHgbrResponse, localCityData.apiOpenWeatherResponse);
+
+            return localCityData;
+        }
+
+       apiUtils.getCityByName(cityName).then(async (apiHgbrResponse) => {
+            try {
+                const apiOpenWeatherResponse = await apiUtils.getCoordsByCityName(cityName);
+
+                if (apiOpenWeatherResponse) {
+                    const centerCoordinates = [
+                        apiOpenWeatherResponse.cityData.lon,
+                        apiOpenWeatherResponse.cityData.lat
+                    ];
 
                     useGeographic(centerCoordinates);
 
                     map.getView().setCenter(centerCoordinates);
                     map.getView().setZoom(apiConfigConstants.ZOOM_MAP_DEFAULT);
+
+                    updateHTMLWithWeatherInfo(apiHgbrResponse, apiOpenWeatherResponse);
+
+                    addToLocalHistory(cityName, apiHgbrResponse, apiOpenWeatherResponse);
                 } else {
                     console.log(errorConstants.GET_COORDS_ERROR_MESSAGE);
                     alert(errorConstants.GET_COORDS_ERROR_MESSAGE);

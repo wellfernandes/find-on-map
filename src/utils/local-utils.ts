@@ -1,19 +1,32 @@
+import {ApiHgbrModel} from "../models/api-hgbr-model";
+import {ApiOpenWeatherModel} from "../models/api-open-weather-model";
+
 interface LocalHistoryEntry {
     city: string;
-    data: any;
+    data: { apiHgbrResponse: ApiHgbrModel; apiOpenWeatherResponse: ApiOpenWeatherModel };
 }
 
-export function addToLocalHistory(cityName: string, cityData: any): void {
+export function addToLocalHistory(
+    cityName: string,
+    apiHgbrResponse: ApiHgbrModel,
+    apiOpenWeatherResponse: ApiOpenWeatherModel
+): void {
     const history = getLocalHistory();
 
-    const existingIndex = history.findIndex(entry => entry.city === cityName);
+    const existingIndex = history.findIndex((entry) => entry.city === cityName);
 
     if (existingIndex !== -1) {
         // update existing entry
-        history[existingIndex].data = cityData;
+        history[existingIndex].data = {
+            apiHgbrResponse,
+            apiOpenWeatherResponse,
+        };
     } else {
         // add new entry
-        history.push({ city: cityName, data: cityData });
+        history.push({
+            city: cityName,
+            data: { apiHgbrResponse, apiOpenWeatherResponse },
+        });
     }
 
     saveLocalHistory(history);
