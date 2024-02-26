@@ -5,8 +5,8 @@ import TileLayer from 'ol/layer/Tile.js';
 import View from 'ol/View.js';
 import ApiUtils from "../utils/api-utils";
 import { useGeographic } from 'ol/proj';
-import {errorConstants} from "../constants/error-constants";
-import {apiConfigConstants} from "../constants/api-config-constants";
+import { errorConstants } from "../constants/error-constants";
+import { apiConfigConstants } from "../constants/api-config-constants";
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
