@@ -36,7 +36,7 @@ interface Result {
     forecast: Forecast[];
 }
 
-export interface ApiHgbrResponse {
+export interface ApiHgbrModel {
     by: string;
     valid_key: boolean;
     results: Result;

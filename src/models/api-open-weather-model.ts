@@ -11,6 +11,6 @@ interface CityData {
     state: string;
 }
 
-export interface ApiOpenWeatherResponse {
+export interface ApiOpenWeatherModel {
     cityData: CityData;
 }
