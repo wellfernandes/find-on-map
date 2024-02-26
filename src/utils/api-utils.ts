@@ -4,10 +4,19 @@ import { ApiHgbrModel } from "../models/api-hgbr-model";
 import { ApiOpenWeatherModel } from "../models/api-open-weather-model";
 // @ts-ignore
 import { updateHTMLWithWeatherInfo } from "../domain/weather-information.js";
+import { addToLocalHistory, getFromLocalHistory } from "./local-utils";
 
 export default class ApiUtils {
     async getCityByName(cityName: string) {
         try {
+
+            const localCityData = getFromLocalHistory(cityName);
+
+            if (localCityData) {
+                console.log("Dados recuperados do histórico local:", localCityData);
+                return localCityData;
+            }
+
             const response = await fetch(
                 apiConfigConstants.API_HGBR_URL
                 +`weather?`
@@ -47,7 +56,9 @@ export default class ApiUtils {
                 from_cache: data.from_cache,
             };
 
-                updateHTMLWithWeatherInfo(apiResponse);
+            updateHTMLWithWeatherInfo(apiResponse);
+            addToLocalHistory(cityName, apiResponse);
+
             return apiResponse;
 
         } catch (error) {
@@ -81,6 +92,8 @@ export default class ApiUtils {
                         state: cityData.state,
                     },
                 };
+
+                addToLocalHistory(cityName, apiResponse);
 
                 return apiResponse;
             }
