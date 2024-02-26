@@ -1,7 +1,9 @@
 import { apiConfigConstants } from "../constants/api-config-constants";
 import { errorConstants } from "../constants/error-constants";
-import { ApiHgbrResponse } from "../models/api-hgbr-response";
-import { ApiOpenWeatherResponse } from "../models/api-open-weather-response";
+import { ApiHgbrModel } from "../models/api-hgbr-model";
+import { ApiOpenWeatherModel } from "../models/api-open-weather-model";
+// @ts-ignore
+import { updateHTMLWithWeatherInfo } from "../domain/weather-information.js";
 
 export default class ApiUtils {
     async getCityByName(cityName: string) {
@@ -14,7 +16,7 @@ export default class ApiUtils {
 
             const data = await response.json();
 
-            const apiResponse: ApiHgbrResponse = {
+            const apiResponse: ApiHgbrModel = {
                 by: data.by,
                 valid_key: data.valid_key,
                 results: {
@@ -45,6 +47,7 @@ export default class ApiUtils {
                 from_cache: data.from_cache,
             };
 
+                updateHTMLWithWeatherInfo(apiResponse);
             return apiResponse;
 
         } catch (error) {
@@ -68,7 +71,7 @@ export default class ApiUtils {
             if (data && data.length > 0) {
 
                 const cityData = data[0];
-                const apiResponse: ApiOpenWeatherResponse = {
+                const apiResponse: ApiOpenWeatherModel = {
                     cityData: {
                         name: cityData.name,
                         local_names: cityData.local_names,
