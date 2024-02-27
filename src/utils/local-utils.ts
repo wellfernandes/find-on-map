@@ -32,7 +32,7 @@ export function addToLocalHistory(
     saveLocalHistory(history);
 }
 
-export function getFromLocalHistory(cityName: string): any | undefined {
+export function getFromLocalHistory(cityName: string): { apiHgbrResponse: ApiHgbrModel; apiOpenWeatherResponse: ApiOpenWeatherModel } | undefined {
     const history = getLocalHistory();
 
     const historyEntry = history.find(entry => entry.city === cityName);
