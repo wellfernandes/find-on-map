@@ -2,14 +2,14 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/assets/img/find-on-map-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/app-icons/find-on-map-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Início</title>
   </head>
   <body>
 
   <header class="header">
-    <h1><img src="./assets/img/find-on-map-icon.png" alt="Find On Map" class="logo"></h1>
+    <h1><img src="assets/img/app-icons/find-on-map-icon.png" alt="Find On Map" class="logo"></h1>
     <a href="index.html" class="btn">Início</a>
     <a href="search-history.html" class="btn">Histórico de Pesquisas</a>
     <a href="contact.html" class="btn">Contato</a>
@@ -24,20 +24,55 @@
   </main>
 
   <div id="weatherInfoScreen" class="weather-info-screen">
-    <div class="weather-info">
+
       <h2>Informações do Clima</h2>
       <div class="weather-info-content">
         <div class="weather-info-left">
-          <p><strong>Cidade:</strong> <span id="cityNameScreen"></span></p><p><strong>Estado:</strong> <span id="stateCityScreen"></span></p>
-          <p><strong>Temperatura:</strong> <span id="temperatureScreen"></span></p>
-          <p><strong>Umidade:</strong> <span id="humidityScreen"></span></p>
-          <p><strong>Velocidade do Vento:</strong> <span id="windSpeedScreen"></span></p>
-          <p><strong>Descrição:</strong> <span id="descriptionScreen"></span></p>
-        </div>
-        <div class="weather-info-right">
-          <img src="" alt="Ícone do Clima" id="weatherIconScreen">
+          <p><strong>Cidade:</strong> <span id="currentCityName"></span></p><p><strong>Estado:</strong> <span id="stateCity"></span></p>
+          <img class="current-weather" src="./assets/img/default-icons/default.png" id="currentDay">
+          <p><strong>Temperatura Atual:</strong> <span id="currentTemperature"></span></p>
+          <p><strong>Temperatura Máxima:</strong> <span id="maxTemperature"></span></p>
+          <p><strong>Temperatura Mínima:</strong> <span id="minTemperature"></span></p>
+          <p><strong>Umidade:</strong> <span id="humidity"></span></p>
+          <p><strong>Velocidade do Vento:</strong> <span id="windSpeed"></span></p>
+          <p><strong>Descrição:</strong> <span id="description"></span></p>
         </div>
       </div>
+    <div class="sub-titles">
+      <h3>Previsão para 5 dias</h3>
+    </div>
+  </div>
+
+  <div class="weather-info-icons">
+    <div class="weather-day-one-icon">
+      <div class="title-days">
+        <span id="dayWeekOne"></span>
+      </div>
+      <img src="./assets/img/default-icons/default.png" id="weatherDayOneIcon">
+    </div>
+    <div class="weather-day-two-icon">
+      <div class="title-days">
+        <span id="dayWeekTwo"></span>
+      </div>
+      <img src="./assets/img/default-icons/default.png" id="weatherDayTwoIcon">
+    </div>
+    <div class="weather-day-three-icon">
+      <div class="title-days">
+        <span id="dayWeekThree"></span>
+      </div>
+      <img src="./assets/img/default-icons/default.png" id="weatherDayThreeIcon">
+    </div>
+    <div class="weather-day-four-icon">
+      <div class="title-days">
+        <span id="dayWeekFour"></span>
+      </div>
+      <img src="./assets/img/default-icons/default.png" id="weatherDayFourIcon">
+    </div>
+    <div class="weather-day-five-icon">
+      <div class="title-days">
+        <span id="dayWeekFive"></span>
+      </div>
+      <img src="./assets/img/default-icons/default.png" id="weatherDayFiveIcon">
     </div>
   </div>
 
