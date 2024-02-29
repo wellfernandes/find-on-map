@@ -50,5 +50,15 @@ npm start
 ```
 Se tudo ocorrer bem, o projeto estará rodando em http://localhost:5173.
 
+# Importante
+Para permitir a comunicação com as APIs corretamente, é necessário habilitar o CORS no navegador. Para isso, é necessário instalar uma extensão que permita a habilitação do CORS.
+Foi utilizado a extensão [Allow CORS](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) no navegador Google Chrome.
+
+1. Instale a extensão no navegador.
+2. Habilite a extensão clicando no ícone da extensão e habilitar o CORS --> *Toggle ON | OFF*. 
+3. Atualize a página.
+4. Pronto! Agora a comunicação com as APIs está habilitada.
+
+
 ---
 [Linkedin](https://www.linkedin.com/in/wellitonfernandes/) 😊
